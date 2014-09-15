@@ -4,7 +4,7 @@ import java.util.Random;
 
 public abstract class InputNumbers {
 
-	public static Object getArrayNumbers(int count, int maxLimit){
+	public static Integer[] getArrayNumbers(int count, int maxLimit){
 		
 		Integer[] intArray = new Integer[count];
 		Random rand = new Random();

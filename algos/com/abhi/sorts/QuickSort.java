@@ -1,11 +1,13 @@
 package com.abhi.sorts;
 
+import com.abhi.Utils;
+
 public class QuickSort implements Sort {
 
 	@Override
 	public void sort(Comparable[] a) {
 		
-		SortHelper.shuffle(a);
+		Utils.shuffle(a);
 		sort(a, 0, a.length-1);
 		
 	}
@@ -17,22 +19,19 @@ public class QuickSort implements Sort {
 		
 		while (true){
 					
-			while(SortHelper.less(a[++i], a[lo])){
+			while(Utils.less(a[++i], a[lo])){
 				if(i == hi) break;
 			}
 			
-			while(SortHelper.less(a[lo], a[--j])){
+			while(Utils.less(a[lo], a[--j])){
 				if(j == lo) break;
 			}
 			
 			if(i >= j) break;
-			SortHelper.exch(a, i, j);
+			Utils.exch(a, i, j);
 		}	
 		
-		SortHelper.exch(a, lo, j);
-		System.out.println("Partition");
-    	SortHelper.print(a);
-		
+		Utils.exch(a, lo, j);
 		return j;
 	}
 	

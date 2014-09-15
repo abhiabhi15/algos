@@ -1,6 +1,6 @@
 package com.abhi.pblms;
 
-import com.abhi.sorts.SortHelper;
+import com.abhi.Utils;
 
 public class MaxPQ<Key extends Comparable<Key>> {
 
@@ -24,7 +24,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
 	public Key delMax(){
 		
 		Key max = pq[1];
-		SortHelper.exch(pq, 1, N--);
+		Utils.exch(pq, 1, N--);
 		sink(1);
 		pq[N+1] = null;
 		return max;
@@ -32,8 +32,8 @@ public class MaxPQ<Key extends Comparable<Key>> {
 	}
 	
 	private void swim(int k){
-		while( k > 1 && SortHelper.less(k/2,k)){
-			SortHelper.exch(pq, k, k/2);
+		while( k > 1 && Utils.less(k / 2, k)){
+			Utils.exch(pq, k, k/2);
 			k = k/2;
 		}
 	}
@@ -43,13 +43,13 @@ public class MaxPQ<Key extends Comparable<Key>> {
 		while (2*k <= N){
 			
 			int j = 2*k;
-			if(j < N && SortHelper.less(j, j+1)){
+			if(j < N && Utils.less(j, j+1)){
 				j++;
 			}
-			if(!SortHelper.less(k, j)){
+			if(!Utils.less(k, j)){
 				break;
 			}
-			SortHelper.exch(pq, k, j);
+			Utils.exch(pq, k, j);
 			k = j;
 		}
 	}

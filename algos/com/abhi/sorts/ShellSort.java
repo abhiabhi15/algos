@@ -1,5 +1,7 @@
 package com.abhi.sorts;
 
+import com.abhi.Utils;
+
 public class ShellSort implements Sort{
 
 	@SuppressWarnings("rawtypes")
@@ -13,15 +15,12 @@ public class ShellSort implements Sort{
 		}
 	
 		while(h >= 1){
-			
 			for(int i = h; i < N; i++){
-				for(int j = i ; j >= h && SortHelper.less(a[j], a[j-h]); j-=h ){
-					SortHelper.exch(a, j, j-h);
+				for(int j = i ; j >= h && Utils.less(a[j], a[j-h]); j-=h ){
+					Utils.exch(a, j, j - h);
 				}
 			}
-			
 			h = h/3;
 		}
 	}
-
 }

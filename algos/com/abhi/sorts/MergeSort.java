@@ -1,5 +1,7 @@
 package com.abhi.sorts;
 
+import com.abhi.Utils;
+
 public class MergeSort implements Sort{
 
 	
@@ -7,7 +9,6 @@ public class MergeSort implements Sort{
 	public void sort(Comparable[] a){
 		
 		Comparable[] aux = new Comparable[a.length];
-		
 		sort(a, aux, 0, a.length-1);
 	}
 	
@@ -38,13 +39,12 @@ public class MergeSort implements Sort{
 				a[k] = aux[j++];
 			}else if( j > hi){
 				a[k] = aux[i++];
-			}else if(SortHelper.less(aux[j], aux[i])){
+			}else if(Utils.less(aux[j], aux[i])){
 				a[k] = aux[j++];
 			}else{
 				a[k] = aux[i++];
 			}
 		}
-		
 	}
 	
 }

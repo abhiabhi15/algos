@@ -1,5 +1,7 @@
 package com.abhi.sorts;
 
+import com.abhi.Utils;
+
 public class HeapSort implements Sort {
 
 	@Override
@@ -11,12 +13,9 @@ public class HeapSort implements Sort {
 		}
 		
 		while( N > 1){
-			SortHelper.exch(a, 1, N);
+			Utils.exch(a, 1, N);
 			sink(a, 1, --N);
-			
-			
 		}
-		
 	}
 	
 	
@@ -25,13 +24,13 @@ public class HeapSort implements Sort {
 		while (2*k <= N){
 			
 			int j = 2*k;
-			if(j < N && SortHelper.less(j, j+1)){
+			if(j < N && Utils.less(j, j+1)){
 				j++;
 			}
-			if(!SortHelper.less(k, j)){
+			if(!Utils.less(k, j)){
 				break;
 			}
-			SortHelper.exch(pq, k, j);
+            Utils.exch(pq, k, j);
 			k = j;
 		}
 	}	
