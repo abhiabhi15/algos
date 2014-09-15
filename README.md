@@ -1,4 +1,4 @@
-algos
+Algorithms implemented in Java
 =====
 
-Basic Algorithms Implemented in Java
+This repository contains the implementation of the common algorithms in Java.
