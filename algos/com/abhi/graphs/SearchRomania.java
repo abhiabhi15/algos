@@ -3,8 +3,6 @@ import java.util.*;
 
 /**
  * Created by Abhishek Kumar Agrawal on 9/5/14.
- * Unity ID : akagrawa
- * Title : AI Assignment-1 Q:4a
  */
 
 public class SearchRomania {
