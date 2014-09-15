@@ -1,4 +1,3 @@
-package com.abhi.graphs;
 
 import java.util.*;
 
@@ -93,7 +92,7 @@ public class SearchRomania {
 
     public static void main(String[] args) {
 
-          if(args.length < 3){
+        if(args.length < 3){
             System.err.println("Please provide the correct inputs");
             System.exit(0);
           }
@@ -106,7 +105,7 @@ public class SearchRomania {
             System.out.println(path);
             System.out.println("Length of the List : " + path.size());
         }
-
+              
     }
 
     private void init() {
