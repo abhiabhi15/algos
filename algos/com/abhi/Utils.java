@@ -1,8 +1,5 @@
 package com.abhi;
 
-import com.abhi.pblms.Search;
-import com.abhi.sorts.Sort;
-
 import java.util.Random;
 
 /**
@@ -40,14 +37,6 @@ public abstract class Utils {
             }
         }
         System.out.println();
-    }
-
-    public static void sort(Sort sort,Comparable a[]){
-        sort.sort(a);
-    }
-
-    public static int search(Search search, Comparable key, Comparable[] a) {
-       return search.search(key,a);
     }
 
     public static void shuffle(Comparable a[]){
