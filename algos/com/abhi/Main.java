@@ -44,7 +44,7 @@ public class Main {
 
         //SearchResult searchResult = Utils.graphSearch( new UniformCostSearch(), searchSpace, "arad", "bucharest");
 
-        SearchResult searchResult = MyCollection.graphSearch( new GreedyBestFirstSearch(), searchSpace, "montreal", "wichita");
+        SearchResult searchResult = MyCollection.graphSearch( new UniformCostSearch(), searchSpace, "miami", "ottawa");
 
         System.out.println(searchResult.getPath());
         System.out.println(searchResult.getNodeExpanded());
@@ -53,7 +53,8 @@ public class Main {
     }
 
     public static void testFunction(){
-    }
+
+     }
 
 	public static void main(String[] args){
 		
