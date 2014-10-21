@@ -7,7 +7,6 @@ public class LinkList implements List{
 	public void addAtFirst(int num){
 		Link link = new Link(num,head);
 		head = link;
-
 	}
 	
 	public int size(){
@@ -104,13 +103,11 @@ public class LinkList implements List{
 		newLink.next = null;
 		movLink = head;
 		while(movLink != null){
-			
 			temp = movLink.next;
 			movLink.next = newLink;
 			newLink = movLink;
 			movLink = temp;
 		}
-		
 		head = newLink;
 	}
 	
@@ -124,23 +121,18 @@ public class LinkList implements List{
 				System.out.println("Loop Detected");
 				return true;
 			}
-			
 			current = current.next;
 			temp = (temp.next != null) ? temp.next.next : temp.next;
 		}
 		return false;
-		
 	}
-	
-	
-	
+
 	public void makeLoop(){
 		Link link = head;
 		while(link.next != null){
 			link = link.next;
 		}
 		link.next = head;
-		
 	}
 	
 	public static Link addNumberInRev( Link list1, Link list2, int carry){
@@ -165,10 +157,6 @@ public class LinkList implements List{
 		return result;
 	}
 
-	
-	
-	
-	
 	public static void main(String[] args){
 		
 		LinkList list = new LinkList();
@@ -209,6 +197,4 @@ public class LinkList implements List{
 		//list.printList();
 	}
 
-	
-	
 }

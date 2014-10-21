@@ -38,8 +38,6 @@ public class BSTree {
 			printLevel(node.left, level-1);
 			printLevel(node.right, level-1);
 		}
-		
-		
 	}
 
 	void inOrderTraversal(Node node){
@@ -165,6 +163,23 @@ public class BSTree {
 			return false;
 		}
 	}
+
+
+    public void leafSum(Node node, int sum){
+
+        sum += node.data;
+        if(node.left == null && node.right == null){
+            System.out.print(sum + " ");
+            return;
+        }
+        if(node.left != null){
+            leafSum(node.left, sum);
+        }
+        if(node.right != null){
+            leafSum(node.right, sum);
+        }
+
+    }
 	
 	public static void main(String[] args){
 		
@@ -177,7 +192,10 @@ public class BSTree {
 		tree.root = tree.insert(tree.root, 0);
 		tree.root = tree.insert(tree.root, 6);
 		tree.root = tree.insert(tree.root, 10);
-		tree.inOrderTraversal(tree.root);
+
+        tree.levelOrderTraversal(tree.root);
+        tree.leafSum(tree.root, 0);
+		/*tree.inOrderTraversal(tree.root);
 		
 		System.out.println();
 		tree.printPaths(tree.root);
@@ -185,7 +203,7 @@ public class BSTree {
 		tree.levelOrderTraversal(tree.root);
 		tree.mirror(tree.root);
 		tree.levelOrderTraversal(tree.root);
-		
+*/
 	/*	
 		System.out.println(tree.maxHeight(tree.root));
 		System.out.println(tree.search(tree.root, 1));
