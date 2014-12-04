@@ -55,4 +55,14 @@ public class SearchResult {
     public List<String> getNodeExpanded() {
         return nodeExpanded;
     }
+
+    @Override
+    public String toString() {
+        return "SearchResult{\n" +
+                "   nodeFound = " + nodeFound + "\n" +
+                "   nodeExpanded = " + nodeExpanded + "\n" +
+                "   path = " + path + "\n" +
+                "   cost = " + cost + "\n" +
+                '}';
+    }
 }

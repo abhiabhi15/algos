@@ -40,16 +40,13 @@ public class Main {
 
         GraphData graphData = new GraphData();
 
-        SearchSpace searchSpace = graphData.getUSASearchSpace();
+        SearchSpace searchSpace = graphData.getRomaniaSearchSpace();
 
         //SearchResult searchResult = Utils.graphSearch( new UniformCostSearch(), searchSpace, "arad", "bucharest");
 
-        SearchResult searchResult = MyCollection.graphSearch( new UniformCostSearch(), searchSpace, "miami", "ottawa");
+        SearchResult searchResult = MyCollection.graphSearch( new DepthFirstSearch(), searchSpace, "arad", "craiova");
 
-        System.out.println(searchResult.getPath());
-        System.out.println(searchResult.getNodeExpanded());
-        System.out.println(searchResult.isNodeFound());
-        System.out.println(searchResult.getCost());
+        System.out.println(searchResult);
     }
 
     public static void testFunction(){

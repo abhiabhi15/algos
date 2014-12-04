@@ -12,7 +12,7 @@ public class GraphData {
     static SearchSpace romania;
     static SearchSpace USA;
 
-    public static SearchSpace getRomaniaSearchSpace(){
+    public SearchSpace getRomaniaSearchSpace(){
         if(romania == null){
             initRomania();
         }
@@ -159,9 +159,6 @@ public class GraphData {
         List<City> cities = getCityPositions();
         for(City city : cities){
 
-            if(city.equals("buffalo")){
-                System.out.println("Buff " + city);
-            }
             Node node = new Node(city.name);
             node.setLatitude(city.latitude);
             node.setLongitude(city.longitude);

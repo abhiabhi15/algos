@@ -40,6 +40,7 @@ public class DepthFirstSearch implements GraphSearch {
             if(lastNode.equalsIgnoreCase(goalNode)){
                 searchResult.setPath(topPath);
                 searchResult.setNodeFound(true);
+                //System.out.println(stack);
                 return searchResult;
             }
 
