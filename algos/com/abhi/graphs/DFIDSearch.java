@@ -13,6 +13,7 @@ public class DFIDSearch implements GraphSearch{
     Stack<List<String>> stack;
 
     public DFIDSearch(){
+        System.out.println("Executing Depth First Iterative Deepening Search");
         searchResult = new SearchResult();
         stack = new Stack<List<String>>();
     }
@@ -63,9 +64,9 @@ public class DFIDSearch implements GraphSearch{
                         }
                     }
                 }
-                System.out.println(" Node Expansion :: " + searchResult.getNodeExpanded());
+               // System.out.println(" Node Expansion :: " + searchResult.getNodeExpanded());
             }
-            System.out.println("---------------------------------------------------------");
+           // System.out.println("---------------------------------------------------------");
             cutoff += cutoffIncrement;
             searchResult.emptyNodeExpanded();
         }

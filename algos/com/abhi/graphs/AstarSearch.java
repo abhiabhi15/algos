@@ -25,6 +25,7 @@ public class AstarSearch implements GraphSearch {
 
 
     public AstarSearch(){
+        System.out.println("Executing Astar Search");
         searchResult = new SearchResult();
         priorityQueue = new PriorityQueue<Path>(300, new Comparator<Path>() {
             public int compare(Path p1, Path p2) {

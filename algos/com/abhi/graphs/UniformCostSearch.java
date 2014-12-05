@@ -25,6 +25,7 @@ public class UniformCostSearch implements GraphSearch{
 
 
     public UniformCostSearch(){
+        System.out.println("Executing Uniform Cost Search");
         searchResult = new SearchResult();
         priorityQueue = new PriorityQueue<Path>(300, new Comparator<Path>() {
             public int compare(Path p1, Path p2) {
@@ -43,14 +44,14 @@ public class UniformCostSearch implements GraphSearch{
         if(initialNode == null) return null;
 
         searchResult.expandNode(startNode);      //Initializing priority queue with path of one-length
-        for(String node : initialNode.getNextNodes()){
+        for(String nodeName : initialNode.getNextNodes()){
             List<String> init_path = new ArrayList<String>();
             init_path.add(initialNode.getName());
-            init_path.add(node);
+            init_path.add(nodeName);
 
             Path path = new Path();
             path.pathNodes = init_path;
-            path.pathCost = initialNode.getLinkPathCost(node);
+            path.pathCost = initialNode.getLinkPathCost(nodeName);
             priorityQueue.add(path);
         }
 

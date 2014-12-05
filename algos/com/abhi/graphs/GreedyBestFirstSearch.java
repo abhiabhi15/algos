@@ -18,6 +18,7 @@ public class GreedyBestFirstSearch implements GraphSearch{
     }
 
     public GreedyBestFirstSearch(){
+        System.out.println("Executing Greedy Best First Search");
         searchResult = new SearchResult();
         priorityQueue = new PriorityQueue<Path>(300, new Comparator<Path>() {
             public int compare(Path p1, Path p2) {

@@ -11,6 +11,7 @@ public class DepthFirstSearch implements GraphSearch {
     Stack<List<String>> stack;
 
     public DepthFirstSearch(){
+        System.out.println("Depth First Search");
         searchResult = new SearchResult();
         stack = new Stack<List<String>>();
     }

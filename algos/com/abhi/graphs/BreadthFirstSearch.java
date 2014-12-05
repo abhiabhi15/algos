@@ -14,6 +14,7 @@ public class BreadthFirstSearch implements GraphSearch {
     Queue<List<String>> queue;
 
     public BreadthFirstSearch(){
+        System.out.println("Executing Breadth First Search");
         searchResult = new SearchResult();
         queue = new LinkedList<List<String>>();
     }
@@ -43,6 +44,7 @@ public class BreadthFirstSearch implements GraphSearch {
              if(lastNode.equalsIgnoreCase(goalNode)){
                  searchResult.setPath(topPath);
                  searchResult.setNodeFound(true);
+                 System.out.println(queue);
                  return searchResult;
              }
 
