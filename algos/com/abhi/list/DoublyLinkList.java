@@ -5,7 +5,6 @@ public class DoublyLinkList implements List{
 	DLink head;
 	DLink tail;
 	
-
 	public void addAtFirst(int num) {
 		if(head == null){
 			head = new DLink(num,null,null);
@@ -15,7 +14,6 @@ public class DoublyLinkList implements List{
 			head.prev = newLink;
 			head = newLink;
 		}
-		
 	}
 
 	public void printList(){
@@ -27,6 +25,19 @@ public class DoublyLinkList implements List{
 		}
 		System.out.println();
 	}
+
+    public void reverse(){
+        DLink temp = head;
+        head = tail;
+        tail = temp;
+        DLink ptr = head;
+        while(ptr != null){
+            temp = ptr.next;
+            ptr.next = ptr.prev;
+            ptr.prev = temp;
+            ptr = ptr.next;
+        }
+    }
 
 	@Override
 	public int size() {
@@ -63,9 +74,7 @@ public class DoublyLinkList implements List{
 				tail.next = newLink;
 				tail = newLink;
 			}
-			
 		}
-		
 	}
 
 	@Override

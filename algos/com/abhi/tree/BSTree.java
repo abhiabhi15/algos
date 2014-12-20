@@ -178,7 +178,6 @@ public class BSTree {
         if(node.right != null){
             leafSum(node.right, sum);
         }
-
     }
 	
 	public static void main(String[] args){
