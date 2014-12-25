@@ -2,9 +2,12 @@ package com.abhi;
 
 import com.abhi.graphs.*;
 import com.abhi.pblms.LinearSearch;
+import com.abhi.sorts.HeapSort;
 import com.abhi.sorts.MergeSort;
 import com.abhi.sorts.QuickSort;
 import com.abhi.utils.InputNumbers;
+
+import java.util.Arrays;
 
 public class Main {
 
@@ -12,10 +15,11 @@ public class Main {
     public static void sort(){
         String[] arr = {"A", "A", "B", "B", "B", "B", "B", "A", "A", "A", "B", "A" };
 
-        Integer[] nums = (Integer[])InputNumbers.getArrayNumbers(100,100);
-
+        Integer[] nums = (Integer[])InputNumbers.getArrayNumbers(10,100);
+        System.out.println(Arrays.toString(nums));
         long st = System.currentTimeMillis();
-        MyCollection.sort(new MergeSort(), nums);
+        MyCollection.sort(new HeapSort(), nums);
+        System.out.println(Arrays.toString(nums));
         System.out.println("Time Taken " + (System.currentTimeMillis() - st) + " milliseconds");
 
     }
@@ -55,9 +59,10 @@ public class Main {
      }
 
 	public static void main(String[] args){
-		
+
+        sort();
 		//testFunction();
-		graphSearch();
+		//graphSearch();
 	}
 	
 

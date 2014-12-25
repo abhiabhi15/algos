@@ -10,6 +10,10 @@ public abstract class Utils {
         return a.compareTo(b) < 0;
     }
 
+    public static boolean less(Comparable[] a, int x, int y){
+        return a[x].compareTo(a[y]) < 0;
+    }
+
     public static void exch(Comparable[] a, int i,int j){
 
         Comparable swap = a[i];

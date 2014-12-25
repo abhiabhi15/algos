@@ -343,25 +343,25 @@ public class MyArray {
 
     public static void heapSort(int[] a){
 
-        int N = a.length;
-        for(int i = N/2; i >=1; i--){
+        int N = a.length-1;
+        for(int i = N/2; i >=0; i--){
             sink( a, i, N);
         }
 
-        while( N > 1){
-            swap(a, 1, N);
-            sink(a, 1, N--);
+        while( N > 0){
+            swap(a, 0, N);
+            sink(a, 0, --N);
         }
     }
 
     private static void sink(int[ ] a, int k, int N){
-        while( 2*k <= N){
+        while( (2*k +1 <= N)){
 
-            int j = 2*k;
-            if( j < N && j< j+1){
+            int j = 2*k+1;
+            if( j < N && a[j]< a[j+1]){
                 j++;
             }
-            if(k > j){
+            if(a[k] > a[j]){
                 break;
             }
             swap(a, j, k);
@@ -371,8 +371,8 @@ public class MyArray {
 
 
     public static void main(String[] args) {
-
-        int[] A = {-1,2,3,34,6,-4,56,0};
+        int[] A = {1, 2, 4, 3};
+        //int[] A = {-1,2,3,34,6,-4,56,0};
         heapSort(A);
        // System.out.println(quickSelect(A, 5));
         System.out.println(Arrays.toString(A));

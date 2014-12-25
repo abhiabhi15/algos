@@ -7,27 +7,27 @@ public class HeapSort implements Sort {
 	@Override
 	public void sort(Comparable[] a) {
 		
-		int N = a.length;
-		for(int k = N/2; k >= 1; k--){
+		int N = a.length-1;
+		for(int k = N/2; k >= 0; k--){
 			sink(a, k, N);
 		}
 		
-		while( N > 1){
-			Utils.exch(a, 1, N);
-			sink(a, 1, --N);
+		while( N > 0){
+			Utils.exch(a, 0, N);
+			sink(a, 0, --N);
 		}
 	}
 	
 	
 	private void sink(Comparable[] pq, int k, int N){
 		
-		while (2*k <= N){
+		while (2*k+1 <= N){
 			
-			int j = 2*k;
-			if(j < N && Utils.less(j, j+1)){
+			int j = 2*k+1;
+			if(j < N && Utils.less(pq, j, j+1)){
 				j++;
 			}
-			if(!Utils.less(k, j)){
+			if(!Utils.less(pq,k, j)){
 				break;
 			}
             Utils.exch(pq, k, j);
