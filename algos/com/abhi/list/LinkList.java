@@ -96,19 +96,18 @@ public class LinkList implements List{
 		if(head == null || size() == 1){
 			return;
 		}
-		
-		Link movLink,temp;
-		Link newLink = head;
-		head = head.next;
-		newLink.next = null;
-		movLink = head;
-		while(movLink != null){
-			temp = movLink.next;
-			movLink.next = newLink;
-			newLink = movLink;
-			movLink = temp;
-		}
-		head = newLink;
+
+        Link current = head;
+        Link next = null;
+        Link prev = null;
+
+        while (current != null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
 	}
 	
 	public static boolean findLoop(Link link){

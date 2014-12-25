@@ -27,8 +27,8 @@ public class MergeSort implements Sort{
 
 	@SuppressWarnings("rawtypes")
 	private void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
-			
-		for(int k = lo; k <= hi; k++){
+
+        for(int k = lo; k <= hi; k++){
 			aux[k] = a[k];
 		}
 		

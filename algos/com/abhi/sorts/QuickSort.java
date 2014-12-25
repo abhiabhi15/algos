@@ -9,8 +9,15 @@ public class QuickSort implements Sort {
 		
 		Utils.shuffle(a);
 		sort(a, 0, a.length-1);
-		
 	}
+
+    public void sort(Comparable[]a, int lo, int hi){
+
+        if(lo >= hi) return;
+        int j = partition(a, lo, hi);
+        sort(a, lo, j-1);
+        sort(a, j+1, hi);
+    }
 
 	private int partition(Comparable[]a, int lo, int hi){
 		
@@ -35,12 +42,6 @@ public class QuickSort implements Sort {
 		return j;
 	}
 	
-	public void sort(Comparable[]a, int lo, int hi){
-		
-		if(lo >= hi) return;
-		int j = partition(a, lo, hi);
-		sort(a, lo, j-1);
-		sort(a, j+1, hi);
-	}
+
 	
 }

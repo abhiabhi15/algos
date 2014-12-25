@@ -2,6 +2,7 @@ package com.abhi;
 
 import com.abhi.graphs.*;
 import com.abhi.pblms.LinearSearch;
+import com.abhi.sorts.MergeSort;
 import com.abhi.sorts.QuickSort;
 import com.abhi.utils.InputNumbers;
 
@@ -14,7 +15,7 @@ public class Main {
         Integer[] nums = (Integer[])InputNumbers.getArrayNumbers(100,100);
 
         long st = System.currentTimeMillis();
-        MyCollection.sort(new QuickSort(), nums);
+        MyCollection.sort(new MergeSort(), nums);
         System.out.println("Time Taken " + (System.currentTimeMillis() - st) + " milliseconds");
 
     }
@@ -44,7 +45,7 @@ public class Main {
 
         //SearchResult searchResult = Utils.graphSearch( new UniformCostSearch(), searchSpace, "arad", "bucharest");
 
-        SearchResult searchResult = MyCollection.graphSearch( new DepthFirstSearch(), searchSpace, "arad", "craiova");
+        SearchResult searchResult = MyCollection.graphSearch( new GreedyBestFirstSearch(), searchSpace, "iasi", "fagaras");
 
         System.out.println(searchResult);
     }
