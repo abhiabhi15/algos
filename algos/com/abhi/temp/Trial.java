@@ -1,5 +1,6 @@
-package com.abhi.utils;
+package com.abhi.temp;
 
+import java.io.InputStream;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,8 +32,12 @@ public boolean equals(Object obj) {
 		return false;
 	return true;
 }
- 
- 
- 
-	
+
+
+    public static void main(String[] args) {
+        String name = "http://finance.yahoo.com/q?s=";
+
+
+    }
+
 }

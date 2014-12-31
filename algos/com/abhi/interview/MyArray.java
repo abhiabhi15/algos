@@ -15,6 +15,10 @@ public class MyArray {
 
     final static int NA = -1;
 
+     /*
+        Given an array A[] of n numbers and another number x,
+        determines whether or not there exist two elements in S whose sum is exactly x
+     */
     static boolean sumExist(int[] A, int sum){
 
         if(A == null  || A.length < 1) return false;
@@ -45,21 +49,20 @@ public class MyArray {
         return false;
     }
 
-    static public boolean majorityElement(int[ ] A){
+    /*
+        Majority Element: A majority element in an array A[] of size n is an element
+        that appears more than n/2 times
+     */
+    static public boolean majorityElement(int[] A){
         Map<Integer, Integer> numMap = new HashMap();
         for(int i = 0; i < A.length; i++){
             if(numMap.containsKey(A[i])){
                 int count = numMap.get(A[i]);
-                if(count > (A.length/2)){
-                    System.out.println("Majority Element Found  =  " + A[i]);
-                    return true;
-                }else{
-                    if(count + 1 > A.length/2){
+                if(count + 1 > A.length/2){
                         System.out.println("Majority Element Found  =  " + A[i]);
                         return true;
-                    }
-                    numMap.put(A[i] , count + 1);
                 }
+                numMap.put(A[i] , count + 1);
             }else{
                 numMap.put(A[i], 1);
             }
@@ -67,6 +70,10 @@ public class MyArray {
         return false;
     }
 
+    /*
+    Given an array of positive integers. All numbers occur even number of times except one
+     number which occurs odd number of times. Find the number in O(n) time & constant space.
+     */
     static int getOdd(int[] A){
         int res = 0;
         for( int i =0; i < A.length; i++){
@@ -75,12 +82,85 @@ public class MyArray {
         return res;
     }
 
+    /*
+       Find the sum of contiguous subarray within a one-dimensional array of numbers
+        which has the largest sum. [Kadane's Algorithm]
+     */
+    static int maxSumSubArray(int[] A ) {
+        int curr_max = A[0];
+        int overall_max = A[0];
+        for(int i = 1; i < A.length; i++){
+            curr_max = Math.max(A[i], A[i] + curr_max);
+            overall_max = Math.max(curr_max, overall_max);
+        }
+        return overall_max;
+    }
+
+    /*
+    You are given a list of n-1 integers and these integers are in the range of 1 to n.
+    There are no duplicates in list. One of the integers is missing in the list. Find the missing integer.
+     */
     static int missingNum(int[ ] A, int n){
         int sum = (n * (n+1))/2;
         for( int i = 0; i < A.length; i++){
             sum = 	sum - A[i];
         }
         return sum;
+    }
+
+    /*
+        Code for Binary Search
+     */
+    static boolean bsearch(int[] A, int lo, int hi, int num){
+
+        while(lo <= hi){
+            int mid = ( hi + lo )/2;
+            if( A[mid] == num){
+                return true;
+            }else if( A[mid] > num){
+                hi = mid -1;
+            }else{
+                lo = mid +1;
+            }
+        }
+        return false;
+    }
+
+    /*
+        Search an element in a sorted and pivoted array
+     */
+    static boolean pivotSearch(int[] A, int num){
+
+        int pivot = findPivot(A, 0, A.length-1);
+        if( pivot == -1){
+            return bsearch(A, 0, A.length-1, num);
+        }
+        if( A[0] < num){
+            return bsearch(A, 0, pivot, num);
+        }else{
+            return bsearch(A, pivot+1, A.length -1, num);
+        }
+    }
+    /*
+        Find the pivoted element's index
+     */
+    static int findPivot( int[] A, int lo, int hi) {
+        if(lo < hi){
+            return -1;
+        }else if( lo == hi){
+            return lo;
+        }
+
+        int mid = (lo + hi)/2;
+        if(mid < hi &&  A[mid] > A[mid+1] ){
+            return mid;
+        }else if( mid > lo && A[mid] < A[mid-1]) {
+            return mid-1;
+        }else if(A[lo] >= A[mid] ){
+            return findPivot(A, lo, mid -1);
+        }else{
+            return findPivot(A, mid+1, hi);
+        }
     }
 
     static void moveAside(int[] mPlusN){
@@ -107,79 +187,6 @@ public class MyArray {
             }else{
                 mPlusN[k] = mPlusN[j++];
             }
-        }
-    }
-
-    static int maxSumSubArray(int[] A ) {
-        int curr_max = A[0];
-        int overall_max = A[0];
-        for(int i = 1; i < A.length; i++){
-            curr_max = Math.max(A[i], A[i] + curr_max);
-            overall_max = Math.max(curr_max, overall_max);
-        }
-        return overall_max;
-    }
-
-    static boolean bsearch(int[ ] A, int lo, int hi, int num){
-
-        while(lo <= hi){
-            int mid = lo + ( hi - lo )/2;
-            if( A[mid] == num){
-                return true;
-            }else if( A[mid] > num){
-                hi = mid -1;
-            }else{
-                lo = mid +1;
-            }
-        }
-        return false;
-    }
-
-    static int bsearchIndex(int[ ] A, int lo, int hi, int num){
-
-        while(lo <= hi){
-            int mid = lo + ( hi - lo )/2;
-            if( A[mid] == num){
-                return mid;
-            }else if( A[mid] > num){
-                hi = mid -1;
-            }else{
-                lo = mid +1;
-            }
-        }
-        return -1;
-    }
-
-
-    static boolean pivotSearch(int[] A, int num){
-
-        int pivot = findPivot(A, 0, A.length-1);
-        if( pivot == -1){
-            return bsearch(A, 0, A.length-1, num);
-        }
-        if( A[0] < num){
-            return bsearch(A, 0, pivot, num);
-        }else{
-            return bsearch(A, pivot+1, A.length -1, num);
-        }
-    }
-
-    static int findPivot( int[ ] A, int lo, int hi) {
-        if(lo < hi){
-            return -1;
-        }else if( lo == hi){
-            return lo;
-        }
-
-        int mid = (lo + hi)/2;
-        if(mid < hi &&  A[mid] > A[mid+1] ){
-            return mid;
-        }else if( mid > lo && A[mid] < A[mid-1]) {
-            return mid-1;
-        }else if(A[lo] >= A[mid] ){
-            return findPivot(A, lo, mid -1);
-        }else{
-            return findPivot(A, mid+1, hi);
         }
     }
 
@@ -248,6 +255,24 @@ public class MyArray {
         }
         System.out.println("Close to zero sum : " + min_sum);
         System.out.println("The numbers are : " + min_l  + ",  " + min_r);
+    }
+
+    /*
+        Binary Search Returning Element Index if found
+     */
+    static int bsearchIndex(int[ ] A, int lo, int hi, int num){
+
+        while(lo <= hi){
+            int mid = lo + ( hi - lo )/2;
+            if( A[mid] == num){
+                return mid;
+            }else if( A[mid] > num){
+                hi = mid -1;
+            }else{
+                lo = mid +1;
+            }
+        }
+        return -1;
     }
 
     static boolean isMajority(int[] A, int x){
@@ -371,12 +396,13 @@ public class MyArray {
 
 
     public static void main(String[] args) {
-        int[] A = {1, 2, 4, 3};
+        int[] A = {-2, -3, 4, -1, -2, 1, 5, -3};
+        System.out.println(maxSumSubArray(A));
         //int[] A = {-1,2,3,34,6,-4,56,0};
-        heapSort(A);
+       /* heapSort(A);
        // System.out.println(quickSelect(A, 5));
         System.out.println(Arrays.toString(A));
-
+*/
       //  qsort(A);
         //MaxMin mx = MyArray.getMaxMin(A, 0, A.length-1);
         //System.out.println(mx);

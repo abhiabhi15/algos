@@ -20,7 +20,7 @@ class Link {
     }
 }
 
-public class LinkedList{
+public class LinkList{
 
         Link head;
         Link htemp;
@@ -365,7 +365,7 @@ public class LinkedList{
         }
 
     public static void main(String[] args){
-            LinkedList linkList = new LinkedList();
+            LinkList linkList = new LinkList();
             linkList.addAtFirst(12);linkList.addAtLast(31);linkList.addAtLast(12);
             //linkList.addAtLast(2);
         //    linkList.addAtLast(15);linkList.addAtLast(23); linkList.addAtLast(6);//linkList.addAtLast(7);
