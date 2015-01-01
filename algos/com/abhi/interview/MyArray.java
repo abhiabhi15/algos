@@ -17,7 +17,7 @@ public class MyArray {
 
      /*
         Given an array A[] of n numbers and another number x,
-        determines whether or not there exist two elements in S whose sum is exactly x
+        determines whether or not there exist two elements in A whose sum is exactly x
      */
     static boolean sumExist(int[] A, int sum){
 
@@ -33,6 +33,7 @@ public class MyArray {
         return false;
     }
 
+    //Method 2 Using sorting
     static boolean sumExists(int[] A, int sum){
         Arrays.sort(A);
         int l =0;
@@ -141,6 +142,7 @@ public class MyArray {
             return bsearch(A, pivot+1, A.length -1, num);
         }
     }
+
     /*
         Find the pivoted element's index
      */
@@ -163,15 +165,11 @@ public class MyArray {
         }
     }
 
-    static void moveAside(int[] mPlusN){
-        int size = mPlusN.length;
-        int j = size -1;
-        for( int i = size -1; i >=0; i --){
-            if(mPlusN[i] != NA){
-                mPlusN[j--] = mPlusN[i];
-            }
-        }
-    }
+    /*
+        There are two sorted arrays. First one is of size m+n containing only m elements.
+        Another one is of size n and contains n elements. Merge these two arrays into the first array
+        of size m+n such that the output is sorted.
+     */
 
     static void mergeArray(int[] mPlusN, int[] N){
         moveAside(mPlusN);
@@ -189,6 +187,29 @@ public class MyArray {
             }
         }
     }
+
+    static void moveAside(int[] mPlusN){
+        int size = mPlusN.length;
+        int j = size -1;
+        for( int i = size -1; i >=0; i --){
+            if(mPlusN[i] != NA){
+                mPlusN[j--] = mPlusN[i];
+            }
+        }
+    }
+
+    /*
+          Reverse an array
+     */
+    static void reverse(int[] A, int start, int end){
+        while(start < end){
+            int temp = A[start];
+            A[start++] = A[end];
+            A[end--] = temp;
+        }
+    }
+
+
 
     static int zeroAside(int [] A) {
         int i = 0;
@@ -211,13 +232,7 @@ public class MyArray {
         }
     }
 
-    static void reverse(int[] A, int start, int end){
-        while(start < end){
-            int temp = A[start];
-            A[start++] = A[end];
-            A[end--] = temp;
-        }
-    }
+
 
     static void arrayLeader(int[] A){
         if(A.length == 0)  return;
@@ -257,39 +272,7 @@ public class MyArray {
         System.out.println("The numbers are : " + min_l  + ",  " + min_r);
     }
 
-    /*
-        Binary Search Returning Element Index if found
-     */
-    static int bsearchIndex(int[ ] A, int lo, int hi, int num){
 
-        while(lo <= hi){
-            int mid = lo + ( hi - lo )/2;
-            if( A[mid] == num){
-                return mid;
-            }else if( A[mid] > num){
-                hi = mid -1;
-            }else{
-                lo = mid +1;
-            }
-        }
-        return -1;
-    }
-
-    static boolean isMajority(int[] A, int x){
-        if(A.length <= 0 ) return false;
-        int n = A.length;
-        int i = bsearchIndex(A, 0, n - 1, x);
-        if( i == -1) return false;
-        n = (n % 2 == 0) ? (n/2)+1 : (n+1)/2;
-        if(n > A.length -1){
-            return false;
-        }
-        if(A[n] == x){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public static MaxMin getMaxMin(int[ ] A, int start, int end){
 
@@ -304,6 +287,7 @@ public class MyArray {
             return MaxMin.compareObj(left, right);
         }
     }
+
 
     public static void shuffle(int[] a){
         Random rand = new Random();
