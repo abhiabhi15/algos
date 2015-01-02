@@ -229,6 +229,11 @@ public class BSTree {
         }
     }
 
+    public int getDiameter(Node node){
+        HeightWrapper wrapper = new HeightWrapper();
+        return getDiameterHelper(node, wrapper);
+    }
+
     private int getDiameterHelper(Node node, HeightWrapper wrapper){
 
         if(node == null){
@@ -249,10 +254,6 @@ public class BSTree {
         return Math.max( rootDiameter, Math.max(ldiameter, rdiameter));
     }
 
-    public int getDiameter(Node node){
-        HeightWrapper wrapper = new HeightWrapper();
-        return getDiameterHelper(node, wrapper);
-    }
 
     public boolean hasPathSum(Node node, int sum){
         if(node  == null) {
@@ -308,6 +309,9 @@ public class BSTree {
         return node;
     }
 
+    /*
+        The leafs height difference must not be greater than 1
+     */
     public boolean isBalancedTree(Node node){
         if(node == null ) return true;
         int left = height(node.left);
@@ -324,12 +328,15 @@ public class BSTree {
         BSTree bsTree = new BSTree();
         bsTree.root = bsTree.insert(bsTree.root, 23);
         bsTree.insert(bsTree.root, 8);bsTree.insert(bsTree.root, 24);
-    //    bsTree.insert(bsTree.root, 6);bsTree.insert(bsTree.root, 10);bsTree.insert(bsTree.root, 16);
+       // System.out.println(bsTree.isBST(bsTree.root));
+  //      bsTree.insert(bsTree.root, 6);bsTree.insert(bsTree.root, 10);bsTree.insert(bsTree.root, 16);
    //     bsTree.insert(bsTree.root, 3);bsTree.insert(bsTree.root, 7);bsTree.insert(bsTree.root, 12);bsTree.insert(bsTree.root, 18);
-
         bsTree.levelorderTraversal(bsTree.root);
-        System.out.println();
-        System.out.println(bsTree.isBalancedTree(bsTree.root));
+        Node node = bsTree.childSumTree(bsTree.root);
+
+        bsTree.levelorderTraversal(node);
+    //    System.out.println();
+        //System.out.println(bsTree.isBalancedTree(bsTree.root));
   //      System.out.println(bsTree.maxwidth(bsTree.root));
   //      bsTree.spiralOrderTraversal(bsTree.root);
   //      bsTree.printLevel(bsTree.root, 1);

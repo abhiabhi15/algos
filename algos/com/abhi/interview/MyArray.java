@@ -6,10 +6,7 @@ package com.abhi.interview;
  * Created on 12/20/14.
  */
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class MyArray {
 
@@ -209,8 +206,10 @@ public class MyArray {
         }
     }
 
-
-
+    /*
+     You are given an array of 0s and 1s in random order.
+     Segregate 0s on left side and 1s on right side of the array. Traverse array only once.
+     */
     static int zeroAside(int [] A) {
         int i = 0;
         while(i < A.length && A[i] != 0 ){
@@ -232,7 +231,11 @@ public class MyArray {
         }
     }
 
-
+    /*
+     An element is leader if it is greater than all the elements to its right side.
+      And the rightmost element is always a leader.
+      For example int the array {16, 17, 4, 3, 5, 2}, leaders are 17, 5 and 2.
+     */
 
     static void arrayLeader(int[] A){
         if(A.length == 0)  return;
@@ -248,6 +251,10 @@ public class MyArray {
         }
     }
 
+    /*
+    An Array of integers is given, both +ve and -ve.
+    You need to find the two elements such that their sum is closest to zero.
+     */
     static void sumClosestZero(int [ ] A){
         Arrays.sort(A);
         int l =0;
@@ -272,6 +279,77 @@ public class MyArray {
         System.out.println("The numbers are : " + min_l  + ",  " + min_r);
     }
 
+    /*
+    Given an array find the maximum sum of a subsequence with the constraint that
+     no 2 numbers in the sequence should be adjacent in the array.
+     So 3 2 7 10 should return 13
+     */
+    public static int maxSumWithoutAdjacent(int[] a){
+
+        int excl = 0;
+        int incl = a[0];
+        for(int i=1; i < a.length; i++){
+            int prev_incl = incl;
+            incl = excl + a[i];
+            excl = Math.max(prev_incl, excl);
+        }
+        return Math.max(excl, incl);
+    }
+
+    /*
+        Union of two arrays
+     */
+
+    public static int[] unionArray(int[] a, int[] b){
+
+        int n1 = a.length;
+        int n2 = b.length;
+        if(n1 <= 0 && n2 <= 0) return null;
+        if(n1 <= 0) return b;
+        if(n2 <= 0) return a;
+
+        int i =0; int j =0;
+        List<Integer> union = new ArrayList<>();
+        while(i < n1 || j < n2){
+            if(i == n1){
+                union.add(b[j++]);
+            }else if(j == n2){
+                union.add(a[i++]);
+            }else if(a[i] > b[j]){
+                union.add(b[j++]);
+            }else if(a[i] < b[j]){
+                union.add(a[i++]);
+            }else{
+                union.add(a[i++]); j++;
+            }
+        }
+        int[] c = new int[union.size()];
+        for(int k=0;k < union.size(); k++){
+            c[k] = union.get(k);
+        }
+        return c;
+    }
+
+    /*
+       Given an array arr[] of integers, find out the difference between any two elements such that
+       larger element appears after the smaller number in arr[]
+     */
+    public static int maxSumLargestAtRight(int[] a){
+
+        int n = a.length;
+        if( n <=0)  return -1;
+        int min_element = a[0];
+        int max_diff = a[1] - a[0];
+        for(int i =1; i< n; i++){
+            if( a[i] < min_element){
+                min_element = a[i];
+            }
+            if(( a[i] - min_element) > max_diff){
+                max_diff = a[i] - min_element;
+            }
+        }
+        return max_diff;
+    }
 
 
     public static MaxMin getMaxMin(int[ ] A, int start, int end){
@@ -380,8 +458,14 @@ public class MyArray {
 
 
     public static void main(String[] args) {
-        int[] A = {-2, -3, 4, -1, -2, 1, 5, -3};
-        System.out.println(maxSumSubArray(A));
+        int[] A = {1,2,6,80,100,300};
+        //int[] B = {13,200,-51,10,17,43,26};
+        //Arrays.sort(A);
+        //Arrays.sort(B);
+        //int[] C = unionArray(A, B);
+        System.out.println(maxSumLargestAtRight(A));
+
+       // System.out.println(maxSumWithoutAdjacent(A));
         //int[] A = {-1,2,3,34,6,-4,56,0};
        /* heapSort(A);
        // System.out.println(quickSelect(A, 5));
