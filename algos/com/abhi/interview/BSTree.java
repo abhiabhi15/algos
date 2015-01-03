@@ -453,7 +453,66 @@ public class BSTree {
         return node;
     }
 
-    public static void main(String[] args) {
+    /*
+        Given a Binary Tree and a key, a function that returns level of the key.
+     */
+    public int getNodeLevel(Node node, int num){
+        return getNodeLevelUtil(node, num, 1);
+    }
+
+    private int getNodeLevelUtil(Node node, int num, int level){
+
+        if(node == null){
+            return 0;
+        }
+        if(node.data == num){
+            return  level;
+        }
+        int leftLevel = getNodeLevelUtil(node.left, num, level+1);
+        if(leftLevel != 0){
+            return leftLevel;
+        }
+        return getNodeLevelUtil(node.right, num, level+1);
+    }
+
+    public boolean printAncestors(Node node, int num){
+
+        if(node == null){
+            return false;
+        }
+
+        if(node.data == num){
+            return true;
+        }
+
+        if(printAncestors(node.left, num) || printAncestors(node.right, num)){
+            System.out.print(node.data + "  ");
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    Given two values k1 and k2 (where k1 < k2) and a root pointer to a Binary Search Tree.
+     Print all the keys of tree in range k1 to k2.
+     */
+    public void printKeysInRange(Node node, int key1, int key2){
+
+        if(node == null) return;
+        if(key1 < node.data){
+            printKeysInRange(node.left, key1, key2);
+        }
+
+        if(node.data >= key1 && node.data <= key2){
+            System.out.print(node.data + "  ");
+        }
+
+        if(key2 > node.data){
+            printKeysInRange(node.right, key1, key2);
+        }
+    }
+
+    public static void main(String[] args) throws Exception{
 
         BSTree bsTree = new BSTree();
         bsTree.root = bsTree.insert(bsTree.root, 23);
@@ -463,7 +522,11 @@ public class BSTree {
         bsTree.insert(bsTree.root, 3);bsTree.insert(bsTree.root, 7);bsTree.insert(bsTree.root, 12);bsTree.insert(bsTree.root, 18);
         bsTree.levelorderTraversal(bsTree.root);
 
+        System.out.println();
+        bsTree.printKeysInRange(bsTree.root, 9, 16);
+     //   bsTree.printAncestors(bsTree.root, 12);
 
+     //   System.out.println(bsTree.getNodeLevel(bsTree.root, 7));
         /*int[] in = {4,2,5,1,6,3};
         int[] pre = {1,2,4,5,3,6};
         bsTree.root = bsTree.buildTree(in,pre);
