@@ -11,7 +11,7 @@ public class BSTree {
     public Node insert(Node node, int num){
 
         if(node == null){
-            return new Node(num, null, null);
+            return new Node(num);
         }
         if(node.data >= num){
             node.left = insert(node.left, num);
@@ -107,7 +107,7 @@ public class BSTree {
         }
     }
 
-    public Node deleteTree( Node node){
+    public Node deleteTree(Node node){
         if(node == null ) return null;
         deleteTree(node.left);
         deleteTree(node.right);
@@ -117,9 +117,9 @@ public class BSTree {
         return null;
     }
 
-    public Node mirrorTree( Node node){
-        if(node == null ) return null;
-        Node newNode = new Node(node.data, null, null);
+    public Node mirrorTree(Node node){
+        if(node == null) return null;
+        Node newNode = new Node(node.data);
         newNode.left = mirrorTree(node.right);
         newNode.right = mirrorTree(node.left);
         return newNode;
@@ -249,7 +249,11 @@ public class BSTree {
         return (hasPathSum(node.left, sum - node.data) || hasPathSum(node.right, sum - node.data));
     }
 
-    public int maxwidth( Node node){
+    /*
+    Given a binary tree, write a function to get the maximum width of the given tree.
+    Width of a tree is maximum of widths of all levels
+     */
+    public int maxLevelwidth( Node node){
 
         int height = height(node);
         int max = 0;
@@ -273,6 +277,36 @@ public class BSTree {
         }else{
             return getLevelWidth(node.left, level-1) + getLevelWidth(node.right, level-1);
         }
+    }
+
+    //Method 2 : Using PreOrderTraversal
+    public int getMaxWidthPreOrder(Node node){
+
+        if(node == null) return 0;
+        int levels = height(node);
+        int[] count = new int[levels];
+        maxWidthHelper(node, count, 0);
+        return getMax(count);
+    }
+
+    private void maxWidthHelper(Node node, int[] count, int level){
+
+        if(node != null){
+            count[level]++;
+            maxWidthHelper(node.left, count, level+1);
+            maxWidthHelper(node.right, count, level+1);
+        }
+    }
+
+    private int getMax(int[] arr){
+
+        int max = arr[0];
+        for(int i=1; i<arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        return max;
     }
 
     public Node childSumTree(Node node){
@@ -371,25 +405,76 @@ public class BSTree {
         return -1;
     }
 
+    /*
+      To create Double tree of the given tree, create a new duplicate for each node,
+      and insert the duplicate as the left child of the original node.
+     */
+    public void getDoubleTree(Node node){
+
+        if(node == null)  return;
+
+        getDoubleTree(node.left);
+        getDoubleTree(node.right);
+
+        Node oldLeft = node.left;
+        node.left = new Node(node.data);
+        node.left.left = oldLeft;
+    }
+
+    /*
+        In Binary Tree, Inorder successor of a node is the next node
+        in Inorder traversal of the Binary Tree
+     */
+    public Node inorderSuccessor(Node root, Node node){
+
+        if(node.right != null){
+            return minValueNode(node.right);
+        }
+
+        Node succ = null;
+        while(root != null){
+            if(node.data < root.data){
+                succ = root;
+                root = root.left;
+            }else if(node.data > root.data){
+                root = root.right;
+            }else{
+                break;
+            }
+        }
+        return succ;
+    }
+
+    private Node minValueNode(Node node){
+
+        if(node.left != null){
+            minValueNode(node.left);
+        }
+        return node;
+    }
+
     public static void main(String[] args) {
 
         BSTree bsTree = new BSTree();
-        /*bsTree.root = bsTree.insert(bsTree.root, 23);
+        bsTree.root = bsTree.insert(bsTree.root, 23);
         bsTree.insert(bsTree.root, 8);bsTree.insert(bsTree.root, 24);
 
-       // System.out.println(bsTree.isBST(bsTree.root));
         bsTree.insert(bsTree.root, 6);bsTree.insert(bsTree.root, 10);bsTree.insert(bsTree.root, 16);
         bsTree.insert(bsTree.root, 3);bsTree.insert(bsTree.root, 7);bsTree.insert(bsTree.root, 12);bsTree.insert(bsTree.root, 18);
-        */
-        int[] in = {4,2,5,1,6,3};
+        bsTree.levelorderTraversal(bsTree.root);
+
+
+        /*int[] in = {4,2,5,1,6,3};
         int[] pre = {1,2,4,5,3,6};
         bsTree.root = bsTree.buildTree(in,pre);
-
-       // bsTree.printLevelOrderUsingQ(bsTree.root);
-        System.out.println();
-        bsTree.levelorderTraversal(bsTree.root);
+*/
+        //Node succ = bsTree.inorderSuccessor(bsTree.root, bsTree.root.left.left.left);
+        //System.out.println(succ.data);
         //Node node = bsTree.childSumTree(bsTree.root);
 
+        //bsTree.getDoubleTree(bsTree.root);
+        //bsTree.levelorderTraversal(bsTree.root);
+        //System.out.println(bsTree.getMaxWidthPreOrder(bsTree.root));
         //bsTree.levelorderTraversal(node);
     //    System.out.println();
         //System.out.println(bsTree.isBalancedTree(bsTree.root));
