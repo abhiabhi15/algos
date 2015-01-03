@@ -1,22 +1,8 @@
 package com.abhi.interview;
 
-/**
- * Created by abhishek
- * Unity Id : akagrawa
- * Created on 12/22/14.
- */
-
-class Node{
-    int data;
-    Node left;
-    Node right;
-
-    Node( int data, Node left, Node right){
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-}
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class BSTree {
 
@@ -212,7 +198,6 @@ public class BSTree {
         }
     }
 
-
     private void printSpiralLevel(  Node node, int level, boolean turn){
         if(node == null) return;
         if(level == 1){
@@ -253,7 +238,6 @@ public class BSTree {
 
         return Math.max( rootDiameter, Math.max(ldiameter, rdiameter));
     }
-
 
     public boolean hasPathSum(Node node, int sum){
         if(node  == null) {
@@ -323,18 +307,90 @@ public class BSTree {
         }
     }
 
+    public void inorderTraversalWithoutRecursion(Node node){
+
+        if(node == null) return;
+        Stack<Node> stack = new Stack<Node>();
+        stack.push(node);
+        Node current = node;
+        while(!stack.isEmpty()){
+            while(current.left != null){
+                stack.push(current.left);
+                current = current.left;
+            }
+            Node temp = stack.pop();
+            System.out.print(temp.data + " ");
+            if(temp.right != null){
+                current = temp.right;
+                stack.push(current);
+            }
+        }
+    }
+
+    public void printLevelOrderUsingQ(Node node){
+        if(node == null) return;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+        while(!queue.isEmpty()){
+            Node curr = queue.poll();
+            System.out.print(curr.data + "  ");
+            if(curr.left != null){
+                queue.add(curr.left);
+            }
+            if(curr.right != null){
+                queue.add(curr.right);
+            }
+        }
+    }
+
+    /*
+    Build a tree from an inorder and pre-order sequence
+     */
+    static int preIndex = 0;
+    public Node buildTree(int[] inOrder, int[] preOrder){
+        return buildTree(inOrder, preOrder, 0, preOrder.length-1);
+    }
+
+    private Node buildTree(int[] inOrder, int[] preOrder, int inStart, int inEnd){
+
+        if(inStart > inEnd) return null;
+        int num = preOrder[preIndex++];
+        Node node = new Node(num);
+        int rootIndex = getRootIndex(inOrder, num, inStart, inEnd);
+        node.left = buildTree(inOrder, preOrder, inStart , rootIndex-1);
+        node.right = buildTree(inOrder, preOrder, rootIndex+1 , inEnd);
+        return node;
+    }
+
+    private int getRootIndex(int[] inOrder, int num, int inStart, int inEnd ){
+        for(int i = inStart; i <= inEnd; i++){
+            if(inOrder[i] == num){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
 
         BSTree bsTree = new BSTree();
-        bsTree.root = bsTree.insert(bsTree.root, 23);
+        /*bsTree.root = bsTree.insert(bsTree.root, 23);
         bsTree.insert(bsTree.root, 8);bsTree.insert(bsTree.root, 24);
-       // System.out.println(bsTree.isBST(bsTree.root));
-  //      bsTree.insert(bsTree.root, 6);bsTree.insert(bsTree.root, 10);bsTree.insert(bsTree.root, 16);
-   //     bsTree.insert(bsTree.root, 3);bsTree.insert(bsTree.root, 7);bsTree.insert(bsTree.root, 12);bsTree.insert(bsTree.root, 18);
-        bsTree.levelorderTraversal(bsTree.root);
-        Node node = bsTree.childSumTree(bsTree.root);
 
-        bsTree.levelorderTraversal(node);
+       // System.out.println(bsTree.isBST(bsTree.root));
+        bsTree.insert(bsTree.root, 6);bsTree.insert(bsTree.root, 10);bsTree.insert(bsTree.root, 16);
+        bsTree.insert(bsTree.root, 3);bsTree.insert(bsTree.root, 7);bsTree.insert(bsTree.root, 12);bsTree.insert(bsTree.root, 18);
+        */
+        int[] in = {4,2,5,1,6,3};
+        int[] pre = {1,2,4,5,3,6};
+        bsTree.root = bsTree.buildTree(in,pre);
+
+       // bsTree.printLevelOrderUsingQ(bsTree.root);
+        System.out.println();
+        bsTree.levelorderTraversal(bsTree.root);
+        //Node node = bsTree.childSumTree(bsTree.root);
+
+        //bsTree.levelorderTraversal(node);
     //    System.out.println();
         //System.out.println(bsTree.isBalancedTree(bsTree.root));
   //      System.out.println(bsTree.maxwidth(bsTree.root));
