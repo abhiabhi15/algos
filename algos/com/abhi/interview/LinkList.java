@@ -5,7 +5,6 @@ import java.util.Map;
 
 /**
  * Created by abhishek
- * Unity Id : akagrawa
  * Created on 12/16/14.
  */
 
@@ -13,6 +12,10 @@ class Link {
 
     int data;
     Link next;
+
+    Link(int data){
+        this.data = data;
+    }
 
     Link(int data, Link next){
         this.data = data;
@@ -46,6 +49,16 @@ public class LinkList{
         public void printList(){
             if(head == null){ return;}
             Link temp = head;
+            while(temp != null){
+                System.out.print( temp.data + " ->  ");
+                temp = temp.next;
+            }
+            System.out.println();
+        }
+
+        public void printList(Link link){
+            if(link == null){ return;}
+            Link temp = link;
             while(temp != null){
                 System.out.print( temp.data + " ->  ");
                 temp = temp.next;
@@ -162,9 +175,8 @@ public class LinkList{
         public void printReverse(Link link){
             if(link == null){
                 return;
-            }else{
-                printReverse(link.next);
             }
+            printReverse(link.next);
             System.out.print(link.data + "  ");
         }
 
@@ -343,39 +355,46 @@ public class LinkList{
             reverse();
         }
 
-        public Link reverseKNodes(Link link, int k){
-            Link current = link;
-            Link next = null;
-            Link prev  = null;
+    public void pairwiseSwap(Link link){
+        link = reverseKNodes(link, 2);
+        printList(link);
+    }
 
-            int counter = 0;
-            while(current != null && counter < k){
-                next = current.next;
-                current.next = prev;
-                prev = current;
-                current = next;
-                counter++;
-            }
+    public Link reverseKNodes(Link link, int k){
+        Link current = link;
+        Link next = null;
+        Link prev  = null;
 
-            if(next != null){
-                link.next = reverseKNodes(next, k);
-            }
-            return prev;
-
+        int counter = 0;
+        while(current != null && counter < k){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+            counter++;
         }
+
+        if(next != null){
+            link.next = reverseKNodes(next, k);
+        }
+        return prev;
+
+    }
 
     public static void main(String[] args){
             LinkList linkList = new LinkList();
-            linkList.addAtFirst(12);linkList.addAtLast(31);linkList.addAtLast(12);
-            //linkList.addAtLast(2);
-        //    linkList.addAtLast(15);linkList.addAtLast(23); linkList.addAtLast(6);//linkList.addAtLast(7);
+            linkList.addAtFirst(12);linkList.addAtLast(31);linkList.addAtLast(4);
+            linkList.addAtLast(2);
+          linkList.addAtLast(15);linkList.addAtLast(23); linkList.addAtLast(6);linkList.addAtLast(7);
 
-           linkList.printList();linkList.greaterRightSide();
+           //linkList.printList(linkList.head);
 
 
+        linkList.printList();
+        linkList.pairwiseSwap(linkList.head);
 
-            //linkList.head = linkList.reverseKNodes(linkList.head, 3);
-            linkList.printList();
+        //linkList.head = linkList.reverseKNodes(linkList.head, 3);
+         //   linkList.printList();
         //linkList.greaterRightSide();linkList.printList();
          /*//linkList.insertInSorted(175);
             linkList.createLoop();

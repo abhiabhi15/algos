@@ -12,6 +12,10 @@ class DLink {
     DLink prev;
     DLink next;
 
+    public DLink(int data){
+        this.data = data;
+    }
+
     public DLink(int data, DLink prev, DLink next){
         this.data = data;
         this.prev = prev;
@@ -27,7 +31,7 @@ public class DoublyLinkedList {
 
     public void addAtFirst(int num){
         if(head == null){
-            head = new DLink(num, null, null);
+            head = new DLink(num);
             tail = head;
         }else {
             DLink link = new DLink(num, null, head);
