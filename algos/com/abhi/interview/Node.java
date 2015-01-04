@@ -20,4 +20,10 @@ class Node{
         this.left = left;
         this.right = right;
     }
+
+    public String toString(){
+        return "Node {" +
+                "[data = " + data + "]" +
+                "}";
+    }
 }

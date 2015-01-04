@@ -512,6 +512,42 @@ public class BSTree {
         }
     }
 
+    //Largest key smaller than or equal to given key
+    public Node floor(Node node, int key){
+
+        if(node == null) return null;
+        if(node.data == key) return node;
+
+        if( key < node.data){
+            return floor(node.left, key);
+        }
+
+        Node t = floor(node.right, key);
+        if(t != null){
+            return t;
+        }
+        return node;
+    }
+
+    //Smallest key greater than or equal to given key
+    public Node ceil(Node node, int key){
+
+        if(node == null) return null;
+        if(node.data == key){
+            return node;
+        }
+
+        if(key > node.data){
+            return ceil(node.right, key);
+        }
+
+        Node t = ceil(node.left, key);
+        if(t != null){
+            return t;
+        }
+        return node;
+    }
+
     public static void main(String[] args) throws Exception{
 
         BSTree bsTree = new BSTree();
@@ -523,7 +559,9 @@ public class BSTree {
         bsTree.levelorderTraversal(bsTree.root);
 
         System.out.println();
-        bsTree.printKeysInRange(bsTree.root, 9, 16);
+
+        System.out.println(bsTree.ceil(bsTree.root, 99));
+     //bsTree.printKeysInRange(bsTree.root, 9, 16);
      //   bsTree.printAncestors(bsTree.root, 12);
 
      //   System.out.println(bsTree.getNodeLevel(bsTree.root, 7));
