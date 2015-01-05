@@ -23,7 +23,6 @@ private Integer[] size;
 			i = id[i];
 		}
 		return i;
-		
 	}
 	
 	public boolean connected(int p,int q){
@@ -45,7 +44,7 @@ private Integer[] size;
 		}
 	}
 	
-public static void main(String[] args){
+    public static void main(String[] args){
 		
 		WQuickUnion wqu = new WQuickUnion(10);
 		

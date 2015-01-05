@@ -1,4 +1,4 @@
-package com.abhi.graphs;
+package com.abhi.graphs.ai;
 
 /**
  * Created by abhishek on 9/24/14.

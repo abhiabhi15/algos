@@ -1,11 +1,11 @@
-package com.abhi.graphs;
+package com.abhi.graphs.ai;
 
 import java.util.*;
 
 /**
- * Created by abhishek on 9/25/14.
+ * Created by abhishek on 9/24/14.
  */
-public class AstarSearch implements GraphSearch {
+public class UniformCostSearch implements GraphSearch{
 
     SearchResult searchResult;
     PriorityQueue<Path> priorityQueue;
@@ -24,8 +24,8 @@ public class AstarSearch implements GraphSearch {
     }
 
 
-    public AstarSearch(){
-        System.out.println("Executing Astar Search");
+    public UniformCostSearch(){
+        System.out.println("Executing Uniform Cost Search");
         searchResult = new SearchResult();
         priorityQueue = new PriorityQueue<Path>(300, new Comparator<Path>() {
             public int compare(Path p1, Path p2) {
@@ -39,18 +39,19 @@ public class AstarSearch implements GraphSearch {
 
     @Override
     public SearchResult search(SearchSpace ss, String startNode, String goalNode) {
+
         Node initialNode = ss.getNode(startNode);
         if(initialNode == null) return null;
 
         searchResult.expandNode(startNode);      //Initializing priority queue with path of one-length
-        for(String node : initialNode.getNextNodes()){
+        for(String nodeName : initialNode.getNextNodes()){
             List<String> init_path = new ArrayList<String>();
             init_path.add(initialNode.getName());
-            init_path.add(node);
+            init_path.add(nodeName);
 
             Path path = new Path();
             path.pathNodes = init_path;
-            path.pathCost = initialNode.getLinkPathCost(node) + (int)getHCost(ss.getNode(node), ss.getNode(goalNode));
+            path.pathCost = initialNode.getLinkPathCost(nodeName);
             priorityQueue.add(path);
         }
 
@@ -80,18 +81,18 @@ public class AstarSearch implements GraphSearch {
 
                 Path pathObj = new Path() ;
                 pathObj.pathNodes = path;
-                pathObj.pathCost = topPath.pathCost - (int)getHCost(node, ss.getNode(goalNode)) + node.getLinkPathCost(nextNode) + (int)getHCost(ss.getNode(nextNode), ss.getNode(goalNode));
+                pathObj.pathCost = topPath.pathCost + node.getLinkPathCost(nextNode);
 
                 if(searchResult.isVisited(nextNode)){             //Removing costly paths with same last node
-                    List<Path> commonPaths = getPathsWithSameLastNode(priorityQueue, nextNode);
-                    if(commonPaths != null){
-                        for(Path commonPath : commonPaths){
-                            if(commonPath.pathCost > pathObj.pathCost){
-                                priorityQueue.remove(commonPath);
-                                priorityQueue.add(pathObj);
-                            }
-                        }
-                    }
+                   List<Path> commonPaths = getPathsWithSameLastNode(priorityQueue, nextNode);
+                   if(commonPaths != null){
+                       for(Path commonPath : commonPaths){
+                           if(commonPath.pathCost > pathObj.pathCost){
+                               priorityQueue.remove(commonPath);
+                               priorityQueue.add(pathObj);
+                           }
+                       }
+                   }
                 }else {
                     priorityQueue.add(pathObj);
                 }
@@ -115,15 +116,5 @@ public class AstarSearch implements GraphSearch {
             }
         }
         return commonPaths;
-    }
-
-    private double getHCost(Node currentNode, Node goalNode){
-
-        float lat1 = currentNode.getLatitude();
-        float lat2 = goalNode.getLatitude();
-        float long1 = currentNode.getLongitude();
-        float long2 = goalNode.getLongitude();
-
-        return Math.sqrt( 69.5 * Math.pow(lat1-lat2, 2) + (69.5 * Math.cos((lat1+lat2)/360 * Math.PI)) * Math.pow(long1-long2,2));
     }
 }

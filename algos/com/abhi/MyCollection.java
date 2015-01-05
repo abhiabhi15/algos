@@ -1,8 +1,8 @@
 package com.abhi;
 
-import com.abhi.graphs.GraphSearch;
-import com.abhi.graphs.SearchResult;
-import com.abhi.graphs.SearchSpace;
+import com.abhi.graphs.ai.GraphSearch;
+import com.abhi.graphs.ai.SearchResult;
+import com.abhi.graphs.ai.SearchSpace;
 import com.abhi.pblms.Search;
 import com.abhi.sorts.Sort;
 

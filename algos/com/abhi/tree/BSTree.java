@@ -2,6 +2,25 @@ package com.abhi.tree;
 
 import com.abhi.utils.InputNumbers;
 
+class Node {
+
+    Integer data;
+    Node left;
+    Node right;
+
+    public Node(int data, Node left, Node right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+
+    @Override
+    public String toString() {
+        return "Node [data=" + data + ", left=" + left + ", right=" + right
+                + "]";
+    }
+}
+
 public class BSTree {
 
 	Node root;

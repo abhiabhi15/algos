@@ -1,4 +1,4 @@
-package com.abhi.graphs;
+package com.abhi.graphs.ai;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

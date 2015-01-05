@@ -1,6 +1,9 @@
-package com.abhi.graphs;
+package com.abhi.graphs.ai;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Created by abhishek on 9/25/14.

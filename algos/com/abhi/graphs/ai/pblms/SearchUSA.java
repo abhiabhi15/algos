@@ -1,4 +1,4 @@
-package com.abhi.graphs.pblms;
+package com.abhi.graphs.ai.pblms;
 
 import java.util.*;
 

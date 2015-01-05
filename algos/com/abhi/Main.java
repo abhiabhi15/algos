@@ -1,10 +1,11 @@
 package com.abhi;
 
-import com.abhi.graphs.*;
+import com.abhi.graphs.ai.GraphData;
+import com.abhi.graphs.ai.GreedyBestFirstSearch;
+import com.abhi.graphs.ai.SearchResult;
+import com.abhi.graphs.ai.SearchSpace;
 import com.abhi.pblms.LinearSearch;
 import com.abhi.sorts.HeapSort;
-import com.abhi.sorts.MergeSort;
-import com.abhi.sorts.QuickSort;
 import com.abhi.utils.InputNumbers;
 
 import java.util.Arrays;
