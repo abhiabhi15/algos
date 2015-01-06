@@ -1,6 +1,6 @@
 package com.abhi.sorts;
 
-import com.abhi.Utils;
+import com.abhi.utils.Utils;
 
 public class ShellSort implements Sort{
 

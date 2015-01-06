@@ -1,6 +1,6 @@
 package com.abhi.pblms;
 
-import com.abhi.Utils;
+import com.abhi.utils.Utils;
 
 public class MaxPQ<Key extends Comparable<Key>> {
 

@@ -1,4 +1,4 @@
-package com.abhi;
+package com.abhi.utils;
 
 import java.util.Random;
 
@@ -6,6 +6,7 @@ import java.util.Random;
  * Created by abhishek on 9/15/14.
  */
 public abstract class Utils {
+
     public static boolean less(Comparable a, Comparable b){
         return a.compareTo(b) < 0;
     }
@@ -50,4 +51,12 @@ public abstract class Utils {
             exch(a, i, r);
         }
     }
+
+    public static String getFilePath(String file){
+
+        String ioPath = PropUtils.getProperty("io_path");
+        return ioPath +"/" + PropUtils.getProperty(file);
+
+    }
+
 }
