@@ -1,9 +1,8 @@
 package com.abhi.interview;
 
 /**
- * Created by abhishek
- * Unity Id : akagrawa
- * Created on 12/19/14.
+ *  Created by abhishek
+ *  Created on 12/19/14.
  */
 
 class DLink {

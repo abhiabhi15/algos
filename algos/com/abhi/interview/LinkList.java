@@ -1,7 +1,7 @@
 package com.abhi.interview;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by abhishek
@@ -147,14 +147,14 @@ public class LinkList{
         }
 
         public void removeDuplicates(){
-            Map<Integer,Boolean> numMap = new HashMap();
+            Set<Integer> numSet = new HashSet<>();
             Link temp = head;
-            numMap.put(temp.data, true);
+            numSet.add(temp.data);
             while(temp.next != null){
-                if(numMap.containsKey(temp.next.data)){
+                if(numSet.contains(temp.next.data)){
                     temp.next = temp.next.next;
                 }else{
-                    numMap.put(temp.next.data, true);
+                    numSet.add(temp.next.data);
                     temp = temp.next;
                 }
             }
@@ -355,31 +355,31 @@ public class LinkList{
             reverse();
         }
 
-    public void pairwiseSwap(Link link){
-        link = reverseKNodes(link, 2);
-        printList(link);
-    }
-
-    public Link reverseKNodes(Link link, int k){
-        Link current = link;
-        Link next = null;
-        Link prev  = null;
-
-        int counter = 0;
-        while(current != null && counter < k){
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-            counter++;
+        public void pairwiseSwap(Link link){
+            link = reverseKNodes(link, 2);
+            printList(link);
         }
 
-        if(next != null){
-            link.next = reverseKNodes(next, k);
-        }
-        return prev;
+        public Link reverseKNodes(Link link, int k){
+            Link current = link;
+            Link next = null;
+            Link prev  = null;
 
-    }
+            int counter = 0;
+            while(current != null && counter < k){
+                next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+                counter++;
+            }
+
+            if(next != null){
+                link.next = reverseKNodes(next, k);
+            }
+            return prev;
+
+        }
 
     public static void main(String[] args){
             LinkList linkList = new LinkList();
