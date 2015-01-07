@@ -2,7 +2,6 @@ package com.abhi.interview;
 
 /**
  * Created by abhishek
- * Unity Id : akagrawa
  * Created on 12/20/14.
  */
 
@@ -388,12 +387,6 @@ public class MyArray {
         qsort(a, k+1, hi);
     }
 
-    public static void swap(int[]a, int pos1, int pos2){
-        int temp = a[pos1];
-        a[pos1] = a[pos2];
-        a[pos2] = temp;
-    }
-
     private static int partition( int[]a, int lo, int hi){
         int i =lo;
         int j =hi+1;
@@ -409,6 +402,12 @@ public class MyArray {
         }
         swap(a, lo, j);
         return j;
+    }
+
+    public static void swap(int[]a, int pos1, int pos2){
+        int temp = a[pos1];
+        a[pos1] = a[pos2];
+        a[pos2] = temp;
     }
 
     public static int quickSelect(int[]a, int k){

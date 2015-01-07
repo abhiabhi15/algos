@@ -2,9 +2,9 @@ package com.abhi.containers;
 
 /**
  * Created by abhishek
- * Unity Id : akagrawa
  * Created on 12/25/14.
  */
+
 public class MaxHeap<Key extends Comparable<Key>>{
     private Key[] heap;
     private int N;

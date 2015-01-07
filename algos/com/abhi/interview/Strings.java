@@ -7,7 +7,6 @@ import java.util.Map;
 
 /**
  * Created by abhishek
- * Unity Id : akagrawa
  * Created on 12/23/14.
  */
 public class Strings {
