@@ -596,9 +596,7 @@ public class BSTree {
         //bsTree.levelorderTraversal(mirror);
 
         //bsTree.printPaths(bsTree.root);
-        //System.out.println(bsTree.leafCount(bsTree.root));
-        /*BSTree bsTree1 = new BSTree();
-        bsTree1.root = bsTree1.insert(bsTree1.root, 5);
+       /* bsTree1.root = bsTree1.insert(bsTree1.root, 5);
         bsTree1.insert(bsTree1.root, 8);bsTree1.insert(bsTree1.root, 1);
         bsTree1.insert(bsTree1.root, 0);bsTree1.insert(bsTree1.root, 1);bsTree1.insert(bsTree1.root, -1);
 
