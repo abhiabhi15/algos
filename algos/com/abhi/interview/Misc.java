@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * Created by abhishek
@@ -83,113 +84,70 @@ public class Misc {
         }
     }
 
-    public static int heightUtopian(int N){
-        int initial = 1;
-        int total = initial;
-        for(int i =1; i <=N; i++){
-            if( i % 2 == 1){
-                total = 2 * total;
-            }else{
-                total += 1;
-            }
+    public static String getBaseConvertNumber(int number, int base){
+        String output = "";
+        String flag = "";
+        if(number < 0){
+            flag = "-";
+            number = Math.abs(number);
         }
-        return total;
+        while(number > 0){
+            output += (number % base);
+            number = number/base;
+        }
+        output+=flag;
+        return new StringBuilder(output).reverse().toString();
     }
 
-    public static int findIndex(String[] arr, int size, int number){
-
-        int lo = 0;
-        int hi = size -1;
-        while(lo <= hi){
-            int mid = (lo + hi)/2;
-            if(Integer.parseInt(arr[mid]) == number){
-                return mid;
-            }else if(Integer.parseInt(arr[mid]) > number){
-                hi = mid -1;
-            }else{
-                lo = mid +1;
-            }
-        }
-        return -1;
+    public static void swap(int[] a, int i, int j){
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
-    public static int getConversions(String input){
-
-        int count = 0;
-        int n = input.length();
-        if(n <= 1){
-            return 0;
-        }
-        for(int i=0,j=n-1; i< n/2; i++,j--){
-            char front = input.charAt(i);
-            char rear = input.charAt(j);
-            if(front != rear){
-                while(rear != front){
-                    if(rear > front && rear != 'a'){
-                        rear--;
-                        count++;
-                    }else if(front > rear && front != 'a'){
-                        front--;
-                        count++;
-                    }
+    // a0 <= a1 >= a2 <= a3
+    public static void alternateSeq(int[] arr){
+        for(int i =0; i < arr.length-1; i++){
+            if(i % 2 == 0){
+                if(arr[i] > arr[i+1]){
+                    swap(arr, i, i+1);
+                }
+            }else {
+                if(arr[i] < arr[i+1]){
+                    swap(arr, i, i+1);
                 }
             }
         }
-        return count;
     }
 
-    public static void insertIntoSorted(int[] ar) {
+    // Given an array of integers, find the count of triplets whose sum is less than or equal to given target Value
+    public static int tripleCount(int[] arr, int target){
 
-        int num = ar[ar.length-1];
-        for(int i = ar.length-1; i > 0; i--){
-            if( num < ar[i-1] ){
-                ar[i] = ar[i-1];
-                printArray(ar);
-            }else{
-                ar[i] = num;
-                printArray(ar);
+        if(arr.length < 3) return 0;
+        Arrays.sort(arr);
+        int i = arr.length-1;
+        while(i >= 0 && arr[i] > target){
+            i--;
+        }
+        if(i < 2) return 0;
+
+        for(; i >=2; i--){
+            int sum = arr[i] + arr[i-1] + arr[i-2];
+            if(sum <=  target){
                 break;
             }
         }
-        if(num < ar[0]){
-            ar[0] = num;
-            printArray(ar);
-        }
+        i++;
+        return (i * (i-1) * (i-2))/6;
     }
-
-    public static void insertionSortPart2(int[] ar)
-    {
-        for(int i = 1; i < ar.length; i++){
-
-            for(int j = i; j > 0; j--){
-                if( ar[j] < ar[j-1] ){
-                    int temp = ar[j];
-                    ar[j] = ar[j-1];
-                    ar[j-1] = temp;
-                    printArray(ar);
-
-                }else{
-                        printArray(ar);
-                    break;
-                }
-            }
-        }
-    }
-
-    private static void printArray(int[] ar) {
-        for(int n: ar){
-            System.out.print(n+" ");
-        }
-        System.out.println("");
-    }
-
-    public static long gcd(long a, long b){
-        if(b == 0) return a;
-        return gcd(b, a%b);
-    }
-
 
     public static void main(String[] args) throws Exception{
+
+        int[] a = {1,2,3,4,5,6,7};
+        alternateSeq(a);
+        System.out.println(tripleCount(a, 7));
+
+       // System.out.println(getBaseConvertNumber(-17, 2));
 
     /*    BufferedReader in = new BufferedReader(new FileReader("/home/abhishek/abc.txt"));
         int testCases = Integer.parseInt(in.readLine());

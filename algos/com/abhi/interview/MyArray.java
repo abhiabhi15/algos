@@ -214,7 +214,7 @@ public class MyArray {
         while(i < A.length && A[i] != 0 ){
             i++;
         }
-        if(i <= A.length -1 ){
+        if(i < A.length){
             int k = i;
             while( i != A.length-1){
                 if(A[i] != 0){
@@ -440,7 +440,7 @@ public class MyArray {
         }
     }
 
-    private static void sink(int[ ] a, int k, int N){
+    private static void sink(int[] a, int k, int N){
         while( (2*k +1 <= N)){
 
             int j = 2*k+1;
