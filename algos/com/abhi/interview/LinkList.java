@@ -345,12 +345,11 @@ public class LinkList{
             while(temp != null){
                 if(temp.data < max){
                     ptr.next = temp.next;
-                    temp = temp.next;
                 }else{
                     max = temp.data;
                     ptr = temp;
-                    temp = temp.next;
                 }
+                temp = temp.next;
             }
             reverse();
         }

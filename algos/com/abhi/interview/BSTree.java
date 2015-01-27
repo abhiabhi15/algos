@@ -137,7 +137,7 @@ public class BSTree {
 
     public Node leastCommonAncestor(Node node, int n1, int n2){
         if(node == null) return null;
-        if( !search(node, n1) || !search(node, n2)){
+        if( !search(node, n1) || !search(node, n2)){ // Should test this in a wrapper function, not in recursion
             return null;
         }
         if(node.data > n1 && node.data > n2) {
@@ -167,7 +167,6 @@ public class BSTree {
             return false;
         }
         prev = node;
-
         return isBST(node.right);
     }
 
@@ -271,7 +270,6 @@ public class BSTree {
         if(node == null) {
             return 0;
         }
-
         if(level == 1){
             return 1;
         }else{
@@ -334,11 +332,7 @@ public class BSTree {
         if(node == null ) return true;
         int left = height(node.left);
         int right = height(node.right);
-        if( Math.abs(left -right) > 1){
-            return false;
-        }else{
-            return isBalancedTree(node.left) && isBalancedTree(node.right);
-        }
+        return Math.abs(left-right) > 1 && isBalancedTree(node.left) && isBalancedTree(node.right);
     }
 
     public void inorderTraversalWithoutRecursion(Node node){
@@ -480,11 +474,9 @@ public class BSTree {
         if(node == null){
             return false;
         }
-
         if(node.data == num){
             return true;
         }
-
         if(printAncestors(node.left, num) || printAncestors(node.right, num)){
             System.out.print(node.data + "  ");
             return true;
@@ -499,7 +491,7 @@ public class BSTree {
     public void printKeysInRange(Node node, int key1, int key2){
 
         if(node == null) return;
-        if(key1 < node.data){
+        if(node.data > key1){
             printKeysInRange(node.left, key1, key2);
         }
 
@@ -507,7 +499,7 @@ public class BSTree {
             System.out.print(node.data + "  ");
         }
 
-        if(key2 > node.data){
+        if(node.data < key2){
             printKeysInRange(node.right, key1, key2);
         }
     }
@@ -518,7 +510,7 @@ public class BSTree {
         if(node == null) return null;
         if(node.data == key) return node;
 
-        if( key < node.data){
+        if(node.data > key){
             return floor(node.left, key);
         }
 
@@ -533,11 +525,9 @@ public class BSTree {
     public Node ceil(Node node, int key){
 
         if(node == null) return null;
-        if(node.data == key){
-            return node;
-        }
+        if(node.data == key) return node;
 
-        if(key > node.data){
+        if(node.data < key){
             return ceil(node.right, key);
         }
 
