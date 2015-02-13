@@ -16,6 +16,7 @@ class Link {
     Link(int data, Link next){
         this.data =data;
         this.next = next;
+
     }
 }
 
