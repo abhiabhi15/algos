@@ -183,7 +183,6 @@ public class BSTree {
 		}
 	}
 
-
     public void leafSum(Node node, int sum){
 
         sum += node.data;

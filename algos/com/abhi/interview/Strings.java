@@ -200,13 +200,13 @@ public class Strings {
 
     public static void main(String[] args) {
 
-        System.out.println(runLengthEncode("aabbrrrrrrrruuuuss"));
+        //System.out.println(runLengthEncode("aabbrrrrrrrruuuuss"));
         //System.out.println(reverseWords("My name is Abhishek"));
         //List<String> sequences = Arrays.asList("Sunday", "Monday", "Tuesday","daily","father");
          //containsChars("day", sequences);
          //   firstNonRepeatingChar("a");
-        //StringBuffer sb = new StringBuffer("abc");
-        //doPerm(sb, sb.length());
+        StringBuffer sb = new StringBuffer("abc");
+        doPerm(sb, sb.length());
    //     System.out.println(reverse("Abhishek"));
         //   printReverse("Abhishek", "Abhishek".length()-1);
         //System.out.println(removeFromSecond("abcdasasd", "bdaghfdhrtaswrghg"));

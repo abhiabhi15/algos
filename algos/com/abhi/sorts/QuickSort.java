@@ -11,7 +11,7 @@ public class QuickSort implements Sort {
 		sort(a, 0, a.length-1);
 	}
 
-    public void sort(Comparable[]a, int lo, int hi){
+    public void sort(Comparable[] a, int lo, int hi){
 
         if(lo >= hi) return;
         int j = partition(a, lo, hi);
@@ -19,7 +19,7 @@ public class QuickSort implements Sort {
         sort(a, j+1, hi);
     }
 
-	private int partition(Comparable[]a, int lo, int hi){
+	private int partition(Comparable[] a, int lo, int hi){
 		
 		int i = lo;
 		int j = hi +1;

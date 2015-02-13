@@ -30,6 +30,7 @@ public class BSTree {
     }
 
     public void inorderTraversal(Node node){
+
         if(node == null) return;
         inorderTraversal(node.left);
         System.out.print(node.data + " ");
@@ -37,6 +38,7 @@ public class BSTree {
     }
 
     public void postorderTraversal(Node node){
+
         if( node == null) return;
         postorderTraversal(node.left);
         postorderTraversal(node.right);

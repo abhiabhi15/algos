@@ -97,10 +97,10 @@ public class MyArray {
     You are given a list of n-1 integers and these integers are in the range of 1 to n.
     There are no duplicates in list. One of the integers is missing in the list. Find the missing integer.
      */
-    static int missingNum(int[ ] A, int n){
+    static int missingNum(int[] A, int n){
         int sum = (n * (n+1))/2;
         for( int i = 0; i < A.length; i++){
-            sum = 	sum - A[i];
+            sum = sum - A[i];
         }
         return sum;
     }
@@ -410,11 +410,11 @@ public class MyArray {
         a[pos2] = temp;
     }
 
-    public static int quickSelect(int[]a, int k){
+    public static int quickSelect(int[] a, int k){
         shuffle(a);
-        int lo= 0;
+        int lo = 0;
         int hi = a.length -1;
-        while( lo < hi){
+        while(lo < hi){
             int j = partition(a, lo, hi);
             if(j < k) {
                 lo = j+1;
