@@ -13,12 +13,8 @@ class Link {
     int data;
     Link next;
 
-    Link(int data){
-        this.data = data;
-    }
-
     Link(int data, Link next){
-        this(data);
+        this.data =data;
         this.next = next;
     }
 }
