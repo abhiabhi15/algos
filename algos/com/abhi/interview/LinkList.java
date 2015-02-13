@@ -31,6 +31,8 @@ public class LinkList{
             head = link;
         }
 
+
+
         public void addAtLast(int num){
             if(head == null){
                 head = new Link(num, null);
