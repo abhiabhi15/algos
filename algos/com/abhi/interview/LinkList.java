@@ -31,8 +31,6 @@ public class LinkList{
             head = link;
         }
 
-
-
         public void addAtLast(int num){
             if(head == null){
                 head = new Link(num, null);
@@ -117,7 +115,7 @@ public class LinkList{
             if(link.next != null){
                 deleteList(link.next);
             }
-            link = null;
+                link = null;
             return null;
         }
 
