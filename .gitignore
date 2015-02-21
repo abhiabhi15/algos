@@ -1,0 +1,11 @@
+.httr-oauth
+*.iml
+.classpath
+.project
+myPrograms.iml
+.idea
+.metadata
+.settings
+try.sh
+*/target
+out
