@@ -12,8 +12,7 @@ import java.io.IOException;
  */
 public class VertexDegree {
 
-
-    public static void main(String[] args) throws IOException{
+    public static JobConf getJobConf(String[] args){
 
         JobConf conf = new JobConf(VertexDegree.class);
         conf.setJobName("vertexDegreeCount");
@@ -31,6 +30,18 @@ public class VertexDegree {
         FileInputFormat.setInputPaths(conf, new Path(args[0]));
         FileOutputFormat.setOutputPath(conf, new Path(args[1]));
 
+        return conf;
+    }
+
+
+    public static void main(String[] args) throws IOException{
+
+        if(args.length != 2){
+            System.err.println("Invalid Input Format");
+            System.out.println("Usage: bin/hadoop jar <jar File> <className> <source dir> <output dir> \n");
+            System.exit(-1);
+        }
+        JobConf conf = VertexDegree.getJobConf(args);
         JobClient.runJob(conf);
     }
 }
